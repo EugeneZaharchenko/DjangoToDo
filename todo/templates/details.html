@@ -1,0 +1,6 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Задание № {{todo.id}}: {{todo.title}} </h1>
+<h2>{{todo.details}}</h2>
+<p>Добавлено: </p> {{todo.created}}
+{% endblock %}

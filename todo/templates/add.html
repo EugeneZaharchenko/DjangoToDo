@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+
+{%block head%}
+
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'add' %}" method="post" class="form-inline my-2 my-lg-0">
+
+    {% csrf_token %}
+    <!--<input class="form-control mr-sm-2" type="search" placeholder="Добавить " aria-label="Search" name="Item">-->
+    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Добавить задачу</button>
+</form>
+<p>Добавлено: </p> {{todo.created}}
+{% endblock %}
