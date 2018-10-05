@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -6,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
     <title>Планировщик</title>
   </head>
   <body>
@@ -36,16 +37,24 @@
 </nav>
 
     {%block content%}
-  <h2><span>{{name|upper}}</span>, ваши задания на сегодня {% now "jS F Y" %}: </h2>
-    <ol>
+  <h2>Ваши задания на сегодня {% now "jS F Y" %}: </h2>
         {% if tasks %}
-            {% for task in tasks %}
-            <li><a href="details/{{task.id}}">{{task.title}}:</a> {{task.details|truncatechars:9}}</li>
-            {% endfor %}
-        {% else %}
-            <h2 class="text-success">Заданий нет.</h2>
+        <div class="container">
+            <table class="table table-bordered">
+                {% for task in tasks %}
+
+                <tr>
+                    <td class="text-center"><a href="details/{{task.id}}">{{task.title}}:</a> </td>
+                    <td class="text-left">{{task.details|truncatechars:7}}</td>
+                    <td class="text-left">{{task.done}}</td>
+                    <td class="text-left">Удалить</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <h2 class="text-success">Заданий нет.</h2>
+            </table>
+        </div>
         {% endif %}
-    </ol>
     {% endblock %}
 
   </body>

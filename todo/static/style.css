@@ -1,0 +1,10 @@
+body {
+    background: #e9fff4;}
+
+table, th, td {
+    border: 1px solid blue;
+}
+
+.container {
+    width: 75%;
+}
