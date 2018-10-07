@@ -40,20 +40,27 @@
         <div class="container">
             <table class="table table-bordered">
                 {% for task in tasks %}
-                {% if task.done %}
+                    {% if not task.done %}
+
                     <tr>
                         <td class="text-center"><a href="../details/{{task.id}}">{{task.title}}:</a> </td>
-                        <td class="text-left">{{task.details|truncatechars:7}}</td>
-                        <td class="text-left">
-                            {% if not task.done %}
-                                Невыполнено
-                            {% else %}
-                                Выполнено
-                            {% endif %}
-                        </td>
+                        <td class="text-left">{{task.details|truncatechars:10}}</td>
+                        <td class="text-left"><a href="{% url 'check' task.id %}">Невыполнено</a></td>
                         <td class="text-left"><a id="delete" href="{% url 'delete' task.id %}">Удалить</a></td>
                     </tr>
-                {% endif %}
+                    {% else %}
+                    <tr class="table-dark">
+                        <td class="text-center"><a href="../details/{{task.id}}">{{task.title}}:</a> </td>
+                        <td class="text-left">{{task.details|truncatechars:7}}</td>
+                        <td class="text-left"><a href="{% url 'uncheck' task.id %}">Выполнено</a></td>
+                        <td class="text-left"><a id="delete" href="{% url 'delete' task.id %}">Удалить</a></td>
+                    </tr>
+
+                     {% endif %}
+
+
+
+
                 {% endfor %}
             {% else %}
                 <h2 class="text-success">Заданий нет.</h2>

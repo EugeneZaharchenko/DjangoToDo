@@ -7,15 +7,25 @@
 {% block content %}
 <form action="{% url 'add' %}" method="post" class="form-inline my-2 my-lg-0">
     {% csrf_token %}
-    <label for="title">Название</label><br />
-    <input type="text" name="title" id="title" />
-  <br>
-  <label for="details">Подробно</label><br />
-  <textarea name="details" id="details"></textarea>
-  <br><br>
-    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Добавить задачу</button>
+  <div class="form-group row">
+      <div class="form-group offset-md-2 col-md-4">
+            <label for="title">Название</label><br/>
+            <input type="text" name="title" id="title" placeholder="Имя задачи"/>
+
+      </div>
+
+      <div class="form-group col-md-4">
+            <label for="details">Подробно</label><br/>
+      <textarea class="form-control" name="details" id="details" rows="2" placeholder="Детально..."></textarea>
+      <button class="btn btn-outline-secondary" id="add" type="submit">Добавить задачу</button>
+      </div>
+  </div>
+    <br>
+    <div>
+
+    </div>
+
 </form>
 <br>
 <a href="/">Вернуться</a>
-<!--<p>Добавлено: </p> {{todo.created}}-->
 {% endblock %}

@@ -1,6 +1,9 @@
 {% extends "main.html" %}
 {% block content %}
-<h1>Задание № {{todo.id}}: {{todo.title}} </h1>
-<h2>{{todo.details}}</h2>
-<p>Добавлено: </p> {{todo.created}}
+<div class="d-flex flex-column align-items-center">
+    <h2>Задание № {{todo.id}}: {{todo.title}} </h2>
+    <h3>{{todo.details}}</h3>
+    <p>Добавлено:  {{todo.created}}</p>
+</div>
+
 {% endblock %}

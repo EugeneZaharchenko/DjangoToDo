@@ -12,3 +12,7 @@ table, th, td {
 #delete:hover {
     color: coral;
 }
+
+#add {
+    margin: 3% 5%;
+}
