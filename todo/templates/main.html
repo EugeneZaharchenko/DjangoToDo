@@ -12,7 +12,6 @@
   </head>
   <body>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -31,7 +30,6 @@
     </ul>
       {%block head%}
       <a href="{% url 'add' %}"> <button class="btn btn-outline-secondary my-2 my-sm-0">Добавить задачу</button></a>
-      <!--<input class="form-control mr-sm-2" type="search" placeholder="Добавить " aria-label="Search" name="Item">-->
       {% endblock %}
   </div>
 </nav>
@@ -42,13 +40,20 @@
         <div class="container">
             <table class="table table-bordered">
                 {% for task in tasks %}
-
-                <tr>
-                    <td class="text-center"><a href="details/{{task.id}}">{{task.title}}:</a> </td>
-                    <td class="text-left">{{task.details|truncatechars:7}}</td>
-                    <td class="text-left">{{task.done}}</td>
-                    <td class="text-left">Удалить</td>
-                </tr>
+                {% if task.done %}
+                    <tr>
+                        <td class="text-center"><a href="../details/{{task.id}}">{{task.title}}:</a> </td>
+                        <td class="text-left">{{task.details|truncatechars:7}}</td>
+                        <td class="text-left">
+                            {% if not task.done %}
+                                Невыполнено
+                            {% else %}
+                                Выполнено
+                            {% endif %}
+                        </td>
+                        <td class="text-left"><a id="delete" href="{% url 'delete' task.id %}">Удалить</a></td>
+                    </tr>
+                {% endif %}
                 {% endfor %}
             {% else %}
                 <h2 class="text-success">Заданий нет.</h2>
