@@ -2,6 +2,6 @@
 testing task
 
 
-superuser: admin
+superuser: _admin_
 
-password: admin
+password: _admin_
